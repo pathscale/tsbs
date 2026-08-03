@@ -10,4 +10,7 @@
 *.hdr
 
 # Compiled binaries
-tsbs_*
+/tsbs_*
+
+# Rust build artifacts
+/worktable/target/

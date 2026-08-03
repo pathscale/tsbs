@@ -12,6 +12,7 @@ import (
 	"github.com/questdb/tsbs/cmd/tsbs_generate_queries/databases/timescaledb"
 	"github.com/questdb/tsbs/cmd/tsbs_generate_queries/databases/timestream"
 	"github.com/questdb/tsbs/cmd/tsbs_generate_queries/databases/victoriametrics"
+	"github.com/questdb/tsbs/cmd/tsbs_generate_queries/databases/worktable"
 	"github.com/questdb/tsbs/pkg/query/config"
 	"github.com/questdb/tsbs/pkg/targets/constants"
 )
@@ -39,5 +40,6 @@ func InitQueryFactories(config *config.QueryGeneratorConfig) map[string]interfac
 		DBName: config.DbName,
 	}
 	factories[constants.FormatQuestDB] = &questdb.BaseGenerator{}
+	factories[constants.FormatWorkTable] = &worktable.BaseGenerator{}
 	return factories
 }

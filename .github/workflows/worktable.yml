@@ -1,0 +1,19 @@
+name: WorkTable
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check formatting
+        run: cargo fmt --manifest-path worktable/Cargo.toml -- --check
+      - name: Test
+        run: cargo test --manifest-path worktable/Cargo.toml
+      - name: Lint
+        run: cargo clippy --manifest-path worktable/Cargo.toml --all-targets -- -D warnings

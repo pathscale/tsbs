@@ -3,6 +3,7 @@ package inputs
 import (
 	"bufio"
 	"encoding/gob"
+	"encoding/json"
 	"fmt"
 	"io"
 	"math/rand"
@@ -15,6 +16,7 @@ import (
 	"github.com/questdb/tsbs/pkg/data/usecases/common"
 	"github.com/questdb/tsbs/pkg/query/config"
 	"github.com/questdb/tsbs/pkg/query/factories"
+	"github.com/questdb/tsbs/pkg/targets/constants"
 )
 
 // Error messages when using a QueryGenerator
@@ -204,7 +206,8 @@ func (g *QueryGenerator) getUseCaseGenerator(c *config.QueryGeneratorConfig) (qu
 func (g *QueryGenerator) runQueryGeneration(useGen queryUtils.QueryGenerator, filler queryUtils.QueryFiller, c *config.QueryGeneratorConfig) error {
 	stats := make(map[string]int64)
 	currentGroup := uint(0)
-	enc := gob.NewEncoder(g.bufOut)
+	gobEncoder := gob.NewEncoder(g.bufOut)
+	jsonEncoder := json.NewEncoder(g.bufOut)
 	defer g.bufOut.Flush()
 
 	rand.Seed(g.conf.Seed)
@@ -221,7 +224,12 @@ func (g *QueryGenerator) runQueryGeneration(useGen queryUtils.QueryGenerator, fi
 		q = filler.Fill(q)
 
 		if currentGroup == c.InterleavedGroupID {
-			err := enc.Encode(q)
+			var err error
+			if c.Format == constants.FormatWorkTable {
+				err = jsonEncoder.Encode(q)
+			} else {
+				err = gobEncoder.Encode(q)
+			}
 			if err != nil {
 				return fmt.Errorf(errCouldNotEncodeQueryFmt, err)
 			}

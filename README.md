@@ -1,7 +1,8 @@
 # Time Series Benchmark Suite (TSBS)
 
 This repo contains code for benchmarking several time series databases,
-including QuestDB, TimescaleDB, MongoDB, InfluxDB, CrateDB, and Cassandra.
+including QuestDB, WorkTable, TimescaleDB, MongoDB, InfluxDB, CrateDB, and
+Cassandra.
 This code is based on a fork of TSBS from TimescaleDB available at
 https://github.com/timescale/tsbs. Read
 [this post](https://questdb.io/blog/optimizing-optimizer-time-series-benchmark-suite/)
@@ -31,6 +32,7 @@ Current databases supported:
 + TimescaleDB [(supplemental docs)](docs/timescaledb.md)
 + Timestream [(supplemental docs)](docs/timestream.md)
 + VictoriaMetrics [(supplemental docs)](docs/victoriametrics.md)
++ WorkTable [(supplemental docs)](worktable/README.md)
 
 ## Overview
 
@@ -97,10 +99,12 @@ cases are implemented for each database:
 |TimescaleDB|X|X|
 |Timestream|X||
 |VictoriaMetrics|X³||
+|WorkTable|X⁴||
 
 ¹ Does not support the `groupby-orderby-limit` query
 ² Supports ingestion only
 ³ Does not support the `groupby-orderby-limit`, `lastpoint`, `high-cpu-1`, `high-cpu-all` queries
+⁴ Supports the `cpu-only` workload through an in-process, in-memory Rust runner. Results must disclose that WorkTable does not use a client/server boundary, WAL, or fsync in this mode.
 
 ## What the TSBS tests
 
@@ -152,7 +156,7 @@ Variables needed:
 1. how much time should be between each reading per device, in seconds. E.g., `10s`
 1. and which database(s) you want to generate for. E.g., `timescaledb`
  (choose from `cassandra`, `clickhouse`, `cratedb`, `influx`, `mongo`, `questdb`, `siridb`,
-  `timescaledb` or `victoriametrics`)
+  `timescaledb`, `victoriametrics`, or `worktable`)
 
 Given the above steps you can now generate a dataset (or multiple
 datasets, if you chose to generate for multiple databases) that can
