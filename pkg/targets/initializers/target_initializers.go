@@ -18,6 +18,7 @@ import (
 	"github.com/questdb/tsbs/pkg/targets/timescaledb"
 	"github.com/questdb/tsbs/pkg/targets/timestream"
 	"github.com/questdb/tsbs/pkg/targets/victoriametrics"
+	"github.com/questdb/tsbs/pkg/targets/worktable"
 )
 
 func GetTarget(format string) targets.ImplementedTarget {
@@ -46,6 +47,8 @@ func GetTarget(format string) targets.ImplementedTarget {
 		return timestream.NewTarget()
 	case constants.FormatQuestDB:
 		return questdb.NewTarget()
+	case constants.FormatWorkTable:
+		return worktable.NewTarget()
 	}
 
 	supportedFormatsStr := strings.Join(constants.SupportedFormats(), ",")

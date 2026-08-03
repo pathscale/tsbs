@@ -8,7 +8,7 @@ GOGET=$(GOCMD) get
 GOMOD=$(GOCMD) mod
 GOFMT=$(GOCMD) fmt
 
-.PHONY: all generators loaders runners lint fmt checkfmt
+.PHONY: all generators loaders runners worktable lint fmt checkfmt
 
 all: generators loaders runners
 
@@ -39,6 +39,9 @@ runners: tsbs_run_queries_akumuli \
 		 tsbs_run_queries_timestream \
 		 tsbs_run_queries_victoriametrics \
 		 tsbs_run_queries_questdb
+
+worktable: generators
+	cargo build --release --manifest-path worktable/Cargo.toml
 
 test:
 	$(GOTEST) -v ./...
