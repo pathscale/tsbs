@@ -34,9 +34,9 @@ checksum = "993a810118f8f37e9c4411c86f1c4c940a09a7ab34b7bf2d88d06f50c553fab7"
 
 [[package]]
 name = "arctic-wt"
-version = "0.1.4"
+version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "525ddffcc39496cf25429bfa2e5b1476e2e71b792c686cbe2080ac5a6d751a3d"
+checksum = "b74c185da7828c555222a7c8ce5f7ec98f173a246db1edddf6c45078816a49b9"
 dependencies = [
  "fearless_simd",
  "ribbit",
@@ -144,9 +144,9 @@ checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
 name = "congee-wt"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "341f16608dbae8a05601aaaac7ff990e8ef89006e8762ffe3516915e9e3c9598"
+checksum = "7840a0723b62221a26ce961b23623218cbb5cc1b781dfd839b667779621844b1"
 dependencies = [
  "crossbeam-epoch",
 ]
@@ -1449,9 +1449,9 @@ dependencies = [
 
 [[package]]
 name = "worktable"
-version = "1.0.0-beta.5"
+version = "1.0.0-beta.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f1dd6ca561da43509be2841c5085c851265de208f9c88ee5e1aceeeda5f31149"
+checksum = "a2a33078fa85bf6cb4e578aeb99ded12c68cc4eecbf9680e7449dad90d2f76b7"
 dependencies = [
  "WorkTablesIndex",
  "arctic-wt",
@@ -1481,9 +1481,9 @@ dependencies = [
 
 [[package]]
 name = "worktable_codegen"
-version = "1.0.0-beta.5"
+version = "1.0.0-beta.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9b6a5b13d506cf5cc58722bd10f01120a8b81c1ab8dedc50f3e27dbc54ff453d"
+checksum = "aed8beb3547a46c8cc745d96ff3e8f8ab9be66ba09979194c60a2c052d6990c5"
 dependencies = [
  "convert_case 0.6.0",
  "indexmap",
