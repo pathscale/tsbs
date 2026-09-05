@@ -212,8 +212,7 @@ fn load_single(table: &TsbsCpuWorkTable, path: &Path) -> Result<u64> {
         }
         let row = parse_cpu_line(&line)
             .wrap_err_with(|| format!("invalid CPU row on line {}", line_number + 1))?;
-        table
-            .insert(row)
+        futures::executor::block_on(table.insert(row))
             .map_err(|error| eyre!("insert failed on line {}: {error}", line_number + 1))?;
         rows += 1;
     }
@@ -232,8 +231,7 @@ fn load_parallel(table: &Arc<TsbsCpuWorkTable>, path: &Path, workers: usize) -> 
             while let Ok((line_number, line)) = receiver.recv() {
                 let row = parse_cpu_line(&line)
                     .wrap_err_with(|| format!("invalid CPU row on line {line_number}"))?;
-                table
-                    .insert(row)
+                futures::executor::block_on(table.insert(row))
                     .map_err(|error| eyre!("insert failed on line {line_number}: {error}"))?;
                 rows += 1;
             }

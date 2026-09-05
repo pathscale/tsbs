@@ -14,3 +14,4 @@
 
 # Rust build artifacts
 /worktable/target/
+/worktable/Cargo.lock
