@@ -12,11 +12,10 @@ path = "src/main.rs"
 [dependencies]
 derive_more = { version = "2.0.1", features = ["from", "error", "display", "debug", "into"] }
 eyre = "0.6"
-futures = "0.3"
+nagoya = "^0.1"
 rkyv = "0.8.9"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tokio = { version = "1", features = ["rt"] }
 uuid = "1"
 worktable = "^1.9.0-alpha1"
 
